@@ -3,47 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 16 - Projeto Integrador</title>
+    <title>Menu de Exercícios</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Exercícios</h2>
-            <ul>
-                <li><a href="#" data-exercise="1">Exercício 1: Tabuada</a></li>
-                <li><a href="#" data-exercise="2">Exercício 2: Operações Aritméticas</a></li>
-                <li><a href="#" data-exercise="3">Exercício 3: IMC</a></li>
-                <li><a href="#" data-exercise="4">Exercício 4: Classificação por Idade</a></li>
-                <li><a href="#" data-exercise="5">Exercício 5: Média de Notas</a></li>
-                <li><a href="#" data-exercise="6">Exercício 6: Calculadora Básica</a></li>
-                <li><a href="#" data-exercise="7">Exercício 7: Par ou Ímpar</a></li>
-                <li><a href="#" data-exercise="8">Exercício 8: Conversão de Moeda</a></li>
-                <li><a href="#" data-exercise="9">Exercício 9: Força da Senha</a></li>
-                <li><a href="#" data-exercise="10">Exercício 10: Análise de Texto</a></li>
-                <li><a href="#" data-exercise="11">Exercício 11: Contagem Regressiva</a></li>
-                <li><a href="#" data-exercise="12">Exercício 12: Jogo de Adivinhação</a></li>
-                <li><a href="#" data-exercise="13">Exercício 13: Cadastro de Usuário</a></li>
-                <li><a href="#" data-exercise="14">Exercício 14: Desconto em Compras</a></li>
-                <li><a href="#" data-exercise="15">Exercício 15: Cronômetro</a></li>
-                <li><a href="#" data-exercise="16">Exercício 16: Pokémon Aleatório</a></li>
-                <li><a href="#" data-exercise="18">Exercício 18: Conversor de Temperatura</a></li>
-                <li><a href="#" data-exercise="19">Exercício 19: Dia da Semana</a></li>
-                <li><a href="#" data-exercise="20">Exercício 20: Validação de Formulário</a></li>
-                <li><a href="#" data-exercise="21">Exercício 21: Classificador de Número</a></li>
-                <li><a href="#" data-exercise="22">Exercício 22: Gerador de Senha</a></li>
-                <li><a href="#" data-exercise="23">Exercício 23: Ano Bissexto</a></li>
-                <li><a href="#" data-exercise="24">Exercício 24: Semáforo</a></li>
-                <li><a href="#" data-exercise="25">Exercício 25: Ordenador de Nomes</a></li>
-                <li><a href="#" data-exercise="26">Exercício 26: Sistema TODO</a></li>
-                <li><a href="#" data-exercise="27">Exercício 27: Sistema de Produtos</a></li>
-            </ul>
-        </aside>
-        <main class="content">
-            <h1>Bem-vindo ao Projeto Integrador</h1>
-            <p>Selecione um exercício na barra lateral para começar.</p>
-        </main>
-    </div>
-    <script src="script.js"></script>
+
+    <nav>
+        <div class="nav-header">
+            <h1>Atividades</h1>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#" onclick="loadExercise('exercicio01/index.html', this, 'Exercício 01')">Exercício 01</a>
+            <a href="#" onclick="loadExercise('exercicio02/index.html', this, 'Exercício 02')">Exercício 02</a>
+            <a href="#" onclick="loadExercise('exercicio03/index.html', this, 'Exercício 03')">Exercício 03</a>
+            <a href="#" onclick="loadExercise('exercicio04/index.html', this, 'Exercício 04')">Exercício 04</a>
+            <a href="#" onclick="loadExercise('exercicio05/index.html', this, 'Exercício 05')">Exercício 05</a>
+            <a href="#" onclick="loadExercise('exercicio06/index.html', this, 'Exercício 06')">Exercício 06</a>
+            <a href="#" onclick="loadExercise('exercicio07/index.html', this, 'Exercício 07')">Exercício 07</a>
+            <a href="#" onclick="loadExercise('exercicio08/index.html', this, 'Exercício 08')">Exercício 08</a>
+            <a href="#" onclick="loadExercise('exercicio09/index.html', this, 'Exercício 09')">Exercício 09</a>
+            <a href="#" onclick="loadExercise('exercicio10/index.html', this, 'Exercício 10')">Exercício 10</a>
+            <a href="#" onclick="loadExercise('exercicio11/index.html', this, 'Exercício 11')">Exercício 11</a>
+            <a href="#" onclick="loadExercise('exercicio12/index.html', this, 'Exercício 12')">Exercício 12</a>
+            <a href="#" onclick="loadExercise('exercicio13/index.html', this, 'Exercício 13')">Exercício 13</a>
+            <a href="#" onclick="loadExercise('exercicio14/index.html', this, 'Exercício 14')">Exercício 14</a>
+            <a href="#" onclick="loadExercise('exercicio15/index.html', this, 'Exercício 15')">Exercício 15</a>
+            <a href="#" onclick="loadExercise('exercicio18/index.html', this, 'Exercício 18')">Exercício 18</a>
+            <a href="#" onclick="loadExercise('exercicio19/index.html', this, 'Exercício 19')">Exercício 19</a>
+            <a href="#" onclick="loadExercise('exercicio20/index.html', this, 'Exercício 20')">Exercício 20</a>
+            <a href="#" onclick="loadExercise('exercicio21/index.html', this, 'Exercício 21')">Exercício 21</a>
+            <a href="#" onclick="loadExercise('exercicio22/index.html', this, 'Exercício 22')">Exercício 22</a>
+            <a href="#" onclick="loadExercise('exercicio23/index.html', this, 'Exercício 23')">Exercício 23</a>
+            <a href="#" onclick="loadExercise('exercicio24/index.html', this, 'Exercício 24')">Exercício 24</a>
+            <a href="#" onclick="loadExercise('exercicio25/index.html', this, 'Exercício 25')">Exercício 25</a>
+            <a href="#" onclick="loadExercise('exercicio26/index.html', this, 'Exercício 26')">Exercício 26</a>
+            <a href="#" onclick="loadExercise('exercicio27/index.html', this, 'Exercício 27')">Exercício 27</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="top-bar" id="topBar">
+            Bem-vindo! Selecione um exercício.
+        </div>
+        <div class="content-area">
+            <div class="iframe-container">
+                <iframe id="exerciseFrame" src="about:blank" title="Área do Exercício"></iframe>
+            </div>
+        </div>
+    </main>
+<script src="script.js"></script>
 </body>
 </html>
