@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadExercise(num) {
         const ex = exercises[num];
+        if (!ex) {
+            content.innerHTML = '<h1>Exercício não encontrado</h1>';
+            return;
+        }
         content.innerHTML = `<h1>${ex.title}</h1>`;
         const form = document.createElement('form');
         ex.inputs.forEach(inp => {
@@ -197,7 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             execute: () => {
                 const texto = document.getElementById('texto').value;
                 const chars = texto.length;
-                const words = texto.trim().split(/\s+/).length;
+                const trimmedText = texto.trim();
+                const words = trimmedText === '' ? 0 : trimmedText.split(/\s+/).length;
                 const upper = (texto.match(/[A-Z]/g) || []).length;
                 return `Caracteres: ${chars}\nPalavras: ${words}\nMaiúsculas: ${upper}`;
             }
@@ -306,6 +311,195 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('.output').textContent = '00:00:00';
                 }
             }]
+        },
+        16: {
+            title: 'Pokémon Aleatório',
+            inputs: [],
+            buttons: [{
+                text: 'Gerar Pokémon',
+                action: () => {
+                    const pokemons = [
+                        { name: 'Pikachu', id: 25 },
+                        { name: 'Charizard', id: 6 },
+                        { name: 'Bulbasaur', id: 1 },
+                        { name: 'Squirtle', id: 7 },
+                        { name: 'Jigglypuff', id: 39 },
+                        { name: 'Eevee', id: 133 },
+                        { name: 'Snorlax', id: 143 },
+                        { name: 'Mewtwo', id: 150 },
+                        { name: 'Gengar', id: 94 },
+                        { name: 'Dragonite', id: 149 }
+                    ];
+                    const randomPokemon = pokemons[Math.floor(Math.random() * pokemons.length)];
+                    document.querySelector('.output').innerHTML = `<div class="pokemon-card"><h3>${randomPokemon.name}</h3><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png" alt="${randomPokemon.name}"></div>`;
+                }
+            }]
+        },
+        18: {
+            title: 'Conversor de Temperatura',
+            inputs: [
+                {name: 'valor', label: 'Valor', type: 'number', step: '0.01'},
+                {name: 'unidadeOrigem', label: 'De', type: 'select', options: ['Celsius', 'Fahrenheit', 'Kelvin']},
+                {name: 'unidadeDestino', label: 'Para', type: 'select', options: ['Celsius', 'Fahrenheit', 'Kelvin']}
+            ],
+            execute: () => {
+                const valor = parseFloat(document.getElementById('valor').value);
+                const origem = document.getElementById('unidadeOrigem').value;
+                const destino = document.getElementById('unidadeDestino').value;
+                
+                let kelvin;
+                if (origem === 'Celsius') kelvin = valor + 273.15;
+                else if (origem === 'Fahrenheit') kelvin = (valor - 32) * 5/9 + 273.15;
+                else kelvin = valor;
+                
+                let resultado;
+                if (destino === 'Celsius') resultado = (kelvin - 273.15).toFixed(2);
+                else if (destino === 'Fahrenheit') resultado = ((kelvin - 273.15) * 9/5 + 32).toFixed(2);
+                else resultado = kelvin.toFixed(2);
+                
+                const simbolos = {Celsius: '°C', Fahrenheit: '°F', Kelvin: 'K'};
+                return `${valor}${simbolos[origem]} = ${resultado}${simbolos[destino]}`;
+            }
+        },
+        19: {
+            title: 'Dia da Semana',
+            inputs: [{name: 'data', label: 'Data', type: 'date'}],
+            execute: () => {
+                const dataInput = document.getElementById('data').value;
+                const [year, month, day] = dataInput.split('-');
+                const data = new Date(year, month - 1, day);
+                const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+                return `${data.toLocaleDateString('pt-BR')} é uma ${diasSemana[data.getDay()]}`;
+            }
+        },
+        20: {
+            title: 'Validação de Formulário',
+            inputs: [
+                {name: 'nome', label: 'Nome', type: 'text'},
+                {name: 'email', label: 'E-mail', type: 'email'},
+                {name: 'mensagem', label: 'Mensagem', type: 'textarea'}
+            ],
+            execute: () => {
+                const nome = document.getElementById('nome').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const mensagem = document.getElementById('mensagem').value.trim();
+                
+                if (!nome) return 'Erro: Nome vazio';
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Erro: E-mail inválido';
+                if (!mensagem) return 'Erro: Mensagem vazia';
+                
+                return `Formulário válido!\nNome: ${nome}\nE-mail: ${email}\nMensagem: ${mensagem}`;
+            }
+        },
+        21: {
+            title: 'Classificador de Número',
+            inputs: [{name: 'numero', label: 'Número', type: 'number', step: '0.01'}],
+            execute: () => {
+                const num = parseFloat(document.getElementById('numero').value);
+                if (num > 0) return `${num} é Positivo`;
+                else if (num < 0) return `${num} é Negativo`;
+                else return `${num} é Zero`;
+            }
+        },
+        22: {
+            title: 'Gerador de Senha',
+            inputs: [{name: 'quantidade', label: 'Quantidade de caracteres', type: 'number', step: '1'}],
+            execute: () => {
+                const quantidade = parseInt(document.getElementById('quantidade').value);
+                const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+                let senha = '';
+                for (let i = 0; i < quantidade; i++) {
+                    senha += caracteres[Math.floor(Math.random() * caracteres.length)];
+                }
+                return `Senha gerada: ${senha}`;
+            }
+        },
+        23: {
+            title: 'Ano Bissexto',
+            inputs: [{name: 'ano', label: 'Ano', type: 'number'}],
+            execute: () => {
+                const ano = parseInt(document.getElementById('ano').value);
+                const isBissexto = (ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0);
+                return `${ano} ${isBissexto ? 'é um ano bissexto' : 'não é um ano bissexto'}`;
+            }
+        },
+        24: {
+            title: 'Semáforo',
+            inputs: [],
+            buttons: [{
+                text: 'Iniciar Semáforo',
+                action: () => {
+                    if (window.semaforoInterval) return;
+                    const cores = ['red', 'yellow', 'green'];
+                    let indice = 0;
+                    const output = document.querySelector('.output');
+                    
+                    function mostrar() {
+                        output.innerHTML = `<div style="width:100px;height:100px;border-radius:50%;background:${cores[indice]};margin:10px;"></div><p>${['Vermelho', 'Amarelo', 'Verde'][indice]}</p>`;
+                    }
+                    
+                    mostrar();
+                    window.semaforoInterval = setInterval(() => {
+                        indice = (indice + 1) % cores.length;
+                        mostrar();
+                    }, 2000);
+                }
+            }, {
+                text: 'Parar Semáforo',
+                action: () => {
+                    if (window.semaforoInterval) {
+                        clearInterval(window.semaforoInterval);
+                        window.semaforoInterval = null;
+                    }
+                }
+            }]
+        },
+        25: {
+            title: 'Ordenador de Nomes',
+            inputs: [{name: 'nomes', label: 'Digite os nomes (separados por vírgula)', type: 'textarea'}],
+            execute: () => {
+                const nomesInput = document.getElementById('nomes').value;
+                const nomes = nomesInput.split(',').map(n => n.trim()).filter(n => n !== '');
+                const nomesOrdenados = nomes.sort((a, b) => a.localeCompare(b));
+                return `Nomes em ordem alfabética:\n${nomesOrdenados.join('\n')}`;
+            }
+        },
+        26: {
+            title: 'Sistema TODO',
+            inputs: [{name: 'tarefa', label: 'Nova Tarefa', type: 'text'}],
+            buttons: [{
+                text: 'Adicionar Tarefa',
+                action: () => {
+                    if (!window.tarefas26) window.tarefas26 = [];
+                    const tarefa = document.getElementById('tarefa').value.trim();
+                    if (tarefa) {
+                        window.tarefas26.push({id: Date.now(), descricao: tarefa, concluida: false});
+                        document.getElementById('tarefa').value = '';
+                        renderTarefas26();
+                    }
+                }
+            }]
+        },
+        27: {
+            title: 'Sistema de Produtos',
+            inputs: [
+                {name: 'nomeProduto', label: 'Nome do Produto', type: 'text'},
+                {name: 'precoProduto', label: 'Preço', type: 'number', step: '0.01'}
+            ],
+            buttons: [{
+                text: 'Adicionar Produto',
+                action: () => {
+                    if (!window.produtos27) window.produtos27 = [];
+                    const nome = document.getElementById('nomeProduto').value.trim();
+                    const preco = parseFloat(document.getElementById('precoProduto').value);
+                    if (nome && !isNaN(preco) && preco >= 0) {
+                        window.produtos27.push({id: Date.now(), nome: nome, preco: preco});
+                        document.getElementById('nomeProduto').value = '';
+                        document.getElementById('precoProduto').value = '';
+                        renderProdutos27();
+                    }
+                }
+            }]
         }
     };
 
@@ -317,4 +511,53 @@ document.addEventListener('DOMContentLoaded', () => {
         const seconds = totalSeconds % 60;
         document.querySelector('.output').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
+
+    function renderTarefas26() {
+        const output = document.querySelector('.output');
+        if (!window.tarefas26 || window.tarefas26.length === 0) {
+            output.innerHTML = '<p>Nenhuma tarefa cadastrada.</p>';
+            return;
+        }
+        let html = '<table border="1" cellpadding="10" style="width:100%;border-collapse:collapse;"><tr><th>Tarefa</th><th>Status</th><th>Ação</th></tr>';
+        window.tarefas26.forEach(t => {
+            html += `<tr><td>${t.descricao}</td><td>${t.concluida ? 'Concluída' : 'Pendente'}</td><td><button onclick="toggleTarefa26(${t.id})">Alternar</button><button onclick="deleteTarefa26(${t.id})">Deletar</button></td></tr>`;
+        });
+        html += '</table>';
+        output.innerHTML = html;
+    }
+
+    window.toggleTarefa26 = (id) => {
+        const tarefa = window.tarefas26.find(t => t.id === id);
+        if (tarefa) {
+            tarefa.concluida = !tarefa.concluida;
+            renderTarefas26();
+        }
+    };
+
+    window.deleteTarefa26 = (id) => {
+        window.tarefas26 = window.tarefas26.filter(t => t.id !== id);
+        renderTarefas26();
+    };
+
+    function renderProdutos27() {
+        const output = document.querySelector('.output');
+        if (!window.produtos27 || window.produtos27.length === 0) {
+            output.innerHTML = '<p>Nenhum produto cadastrado.</p><p>Total: R$ 0.00</p>';
+            return;
+        }
+        let total = 0;
+        let html = '<table border="1" cellpadding="10" style="width:100%;border-collapse:collapse;"><tr><th>Produto</th><th>Preço</th><th>Ação</th></tr>';
+        window.produtos27.forEach(p => {
+            total += p.preco;
+            html += `<tr><td>${p.nome}</td><td>R$ ${p.preco.toFixed(2)}</td><td><button onclick="deleteProduto27(${p.id})">Deletar</button></td></tr>`;
+        });
+        html += '</table>';
+        html += `<p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
+        output.innerHTML = html;
+    }
+
+    window.deleteProduto27 = (id) => {
+        window.produtos27 = window.produtos27.filter(p => p.id !== id);
+        renderProdutos27();
+    };
 });
