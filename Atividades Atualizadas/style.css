@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* ─── Reset ──────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ─── Variables ──────────────────────────────────────── */
+:root {
+    --bg:           #0f1623;
+    --bg-card:      #161d2e;
+    --bg-input:     #1a2236;
+    --border:       rgba(255, 255, 255, 0.08);
+    --accent:       #6366f1;
+    --accent-h:     #818cf8;
+    --accent-glow:  rgba(99, 102, 241, 0.3);
+    --success:      #10b981;
+    --warning:      #f59e0b;
+    --danger:       #ef4444;
+    --text-1:       #f1f5f9;
+    --text-2:       #94a3b8;
+    --text-3:       #475569;
+    --radius:       12px;
+    --radius-sm:    8px;
+    --shadow:       0 8px 32px rgba(0, 0, 0, 0.4);
+    --transition:   0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+html, body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text-1);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Headings ───────────────────────────────────────── */
+h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    background: linear-gradient(135deg, var(--text-1) 30%, var(--accent-h));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-bottom: 0.75rem;
+}
+
+p {
+    color: var(--text-2);
+    margin-bottom: 0.85rem;
+}
+
+/* ─── Layout Wrapper ─────────────────────────────────── */
+body {
+    padding: 2rem 2.5rem;
+    max-width: 780px;
+}
+
+/* ─── Labels ─────────────────────────────────────────── */
+label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* ─── Inputs, Selects, Textareas ─────────────────────── */
+input,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-1);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.925rem;
+    font-weight: 400;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    margin-bottom: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-3);
+    font-weight: 300;
+}
+
+input[type="number"] {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(99, 102, 241, 0.04);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    cursor: pointer;
+}
+
+select option {
+    background: var(--bg-card);
+    color: var(--text-1);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    margin-bottom: 1.25rem;
+}
+
+button:hover {
+    background: var(--accent-h);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ─── Output / Resultado ─────────────────────────────── */
+#resultado,
+.resultado,
+.output {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-1);
+    white-space: pre-wrap;
+    line-height: 1.8;
+    min-height: 3rem;
+    position: relative;
+}
+
+#resultado:not(:empty)::before,
+.resultado:not(:empty)::before {
+    content: 'Resultado';
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ─── Tables ─────────────────────────────────────────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+th {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-h);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: rgba(255,255,255,0.02);
+    color: var(--text-1);
+}
+
+/* ─── Pokémon Card ───────────────────────────────────── */
+.pokemon-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.pokemon-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.pokemon-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-1);
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.pokemon-card img {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
